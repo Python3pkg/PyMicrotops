@@ -33,7 +33,7 @@ def read_microtops_serial(port, outfile, comment=None, gui=False):
             spl = line.split(",")
             print((spl[26] + "\t" + spl[-2]))
         print("")
-        comment = input("Enter a comment for the data:\n")
+        comment = eval(input("Enter a comment for the data:\n"))
     elif comment is not None:
         data = [line.replace("\r", "").replace("\n", "") + ",%s\n" % comment for line in data]
 
@@ -55,7 +55,7 @@ def read_microtops_serial(port, outfile, comment=None, gui=False):
     f = open(outfile, 'a')
     f.writelines(towrite)
     f.close()
-    print("Data saved to %s. Exiting" % outfile)
+    print(("Data saved to %s. Exiting" % outfile))
 
 
 def read_microtops_gui():
@@ -64,8 +64,8 @@ def read_microtops_gui():
     print("-----------------------------")
     # Get the parameters either from the command-line or by asking the user
 
-    port = input("Enter the serial port to use (eg. COM8 or /dev/serial):\n")
-    outfile = input("Enter the full path to the file to write to:\n")
+    port = eval(input("Enter the serial port to use (eg. COM8 or /dev/serial):\n"))
+    outfile = eval(input("Enter the full path to the file to write to:\n"))
 
     print("Reading data...")
     read_microtops_serial(outfile, port, gui=True)
